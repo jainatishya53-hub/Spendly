@@ -1,7 +1,7 @@
 import os
 import sqlite3
 
-from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.path.join(BASE_DIR, "expense_tracker.db")
@@ -89,6 +89,15 @@ def get_user_by_email(email):
         ).fetchone()
     finally:
         conn.close()
+
+
+def verify_credentials(email, password):
+    user = get_user_by_email(email)
+    if user is None:
+        return None
+    if not check_password_hash(user["password_hash"], password):
+        return None
+    return user
 
 
 def create_user(name, email, password):

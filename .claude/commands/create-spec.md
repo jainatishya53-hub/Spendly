@@ -1,4 +1,3 @@
-
 ---
 description: Create a spec file and feature branch for the next Spendly step
 argument-hint: "Step number and feature name e.g. 2 registration"
@@ -120,9 +119,9 @@ Save to: `.claude/specs/<step_number>-<feature_slug>.md`
 ## Step 9 — Report to the user
 Print a short summary in this exact format:
 ```
-Branch:     <branch_name>
-Spec file:  .claude/specs/<step_number>-<feature_slug>.md
-Title:      <feature_title>
+Branch:    <branch_name>
+Spec file: .claude/specs/<step_number>-<feature_slug>.md
+Title:     <feature_title>
 ```
 
 Then tell the user:
