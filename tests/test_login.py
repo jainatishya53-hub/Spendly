@@ -16,7 +16,7 @@ def test_successful_login(client, seeded_user):
         data={"email": seeded_user["email"], "password": seeded_user["password"]},
     )
     assert resp.status_code == 302
-    assert resp.headers["Location"].endswith("/")
+    assert resp.headers["Location"].endswith("/profile")
 
     with client.session_transaction() as sess:
         assert sess["user_id"] is not None
