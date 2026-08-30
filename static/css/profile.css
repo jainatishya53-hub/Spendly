@@ -1,0 +1,272 @@
+/* ------------------------------------------------------------------ */
+/* Profile page — Step 4 (design-first, hardcoded data)                 */
+/* ------------------------------------------------------------------ */
+
+/* Category colour tokens. Map onto the global palette where possible;   */
+/* the six literal hex values below (3 categories x fg + bg) are the     */
+/* only hardcoded colours, defined once here — mirroring how style.css's */
+/* :root holds raw hex.                                                  */
+:root {
+    --cat-food: var(--accent-2);
+    --cat-food-bg: var(--accent-2-light);
+    --cat-transport: var(--accent);
+    --cat-transport-bg: var(--accent-light);
+    --cat-health: var(--danger);
+    --cat-health-bg: var(--danger-light);
+    --cat-other: var(--ink-muted);
+    --cat-other-bg: var(--border-soft);
+
+    --cat-bills: #4a90d9;
+    --cat-bills-bg: #eaf2fb;
+    --cat-entertainment: #8b7cf6;
+    --cat-entertainment-bg: #efecff;
+    --cat-shopping: #d9534f;
+    --cat-shopping-bg: #fbeceb;
+}
+
+/* ------------------------------------------------------------------ */
+/* Layout                                                              */
+/* ------------------------------------------------------------------ */
+
+.profile-section {
+    min-height: calc(100vh - 60px - 100px);
+    padding: 3rem 2rem;
+}
+
+.profile-container {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.profile-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* 1. Identity card                                                    */
+/* ------------------------------------------------------------------ */
+
+.profile-identity {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.avatar {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: var(--accent-light);
+    color: var(--accent);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+}
+
+.identity-meta { display: flex; flex-direction: column; gap: 0.15rem; }
+
+.profile-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--ink);
+}
+
+.profile-email {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+}
+
+.profile-since {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Summary stats                                                    */
+/* ------------------------------------------------------------------ */
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.stat-label {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+}
+
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--ink);
+}
+
+/* ------------------------------------------------------------------ */
+/* Section headings                                                    */
+/* ------------------------------------------------------------------ */
+
+.section-heading {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin-bottom: 1rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Transaction table                                                */
+/* ------------------------------------------------------------------ */
+
+.txn-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.txn-table th {
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--ink-faint);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 0.75rem;
+}
+
+.txn-table td {
+    padding: 0.7rem 0.75rem;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--ink-soft);
+}
+
+.txn-table tbody tr:last-child td { border-bottom: none; }
+
+.txn-amount-col {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+}
+
+/* ------------------------------------------------------------------ */
+/* Category badges                                                     */
+/* ------------------------------------------------------------------ */
+
+.cat-badge {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.cat-badge--food          { color: var(--cat-food);          background: var(--cat-food-bg); }
+.cat-badge--transport     { color: var(--cat-transport);     background: var(--cat-transport-bg); }
+.cat-badge--bills         { color: var(--cat-bills);         background: var(--cat-bills-bg); }
+.cat-badge--health        { color: var(--cat-health);        background: var(--cat-health-bg); }
+.cat-badge--entertainment { color: var(--cat-entertainment); background: var(--cat-entertainment-bg); }
+.cat-badge--shopping      { color: var(--cat-shopping);      background: var(--cat-shopping-bg); }
+.cat-badge--other         { color: var(--cat-other);         background: var(--cat-other-bg); }
+
+/* ------------------------------------------------------------------ */
+/* 4. Category breakdown                                               */
+/* ------------------------------------------------------------------ */
+
+.cat-breakdown {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.cat-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 90px;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.cat-row-label {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+}
+
+.cat-row-amount {
+    text-align: right;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-muted);
+}
+
+.cat-bar-track {
+    height: 8px;
+    background: var(--border-soft);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.cat-bar {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+}
+
+.cat-bar--food          { background: var(--cat-food); }
+.cat-bar--transport     { background: var(--cat-transport); }
+.cat-bar--bills         { background: var(--cat-bills); }
+.cat-bar--health        { background: var(--cat-health); }
+.cat-bar--entertainment { background: var(--cat-entertainment); }
+.cat-bar--shopping      { background: var(--cat-shopping); }
+.cat-bar--other         { background: var(--cat-other); }
+
+/* ------------------------------------------------------------------ */
+/* Width utilities (bar fill — keeps widths out of inline styles)      */
+/* ------------------------------------------------------------------ */
+
+.w-5   { width: 5%; }
+.w-10  { width: 10%; }
+.w-15  { width: 15%; }
+.w-20  { width: 20%; }
+.w-25  { width: 25%; }
+.w-30  { width: 30%; }
+.w-35  { width: 35%; }
+.w-40  { width: 40%; }
+.w-45  { width: 45%; }
+.w-50  { width: 50%; }
+.w-55  { width: 55%; }
+.w-60  { width: 60%; }
+.w-65  { width: 65%; }
+.w-70  { width: 70%; }
+.w-75  { width: 75%; }
+.w-80  { width: 80%; }
+.w-85  { width: 85%; }
+.w-90  { width: 90%; }
+.w-95  { width: 95%; }
+.w-100 { width: 100%; }
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                          */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 640px) {
+    .profile-section { padding: 2rem 1rem; }
+    .stats-row { grid-template-columns: 1fr; }
+    .cat-row { grid-template-columns: 90px 1fr auto; gap: 0.6rem; }
+}
